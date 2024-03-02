@@ -131,24 +131,26 @@ function CourseSelection(props) {
               deletable={true}
               handleDelete={handleDelete}
             />
-            <Typography variant="h6">选课</Typography>
             {auth === 1 ? (
-              <FormControl>
-                <InputLabel>课程</InputLabel>
-                <Select label="课程" value={course} onChange={(ev) => setCourse(ev.target.value)}>
-                  {courseList.map((course) => (
-                    <MenuItem value={course.id} key={course.id}>
-                      {course.name} （已选 {course.student_count} / {course.capacity}）
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <>
+                <Typography variant="h6">选课</Typography>
+                <FormControl>
+                  <InputLabel>课程</InputLabel>
+                  <Select label="课程" value={course} onChange={(ev) => setCourse(ev.target.value)}>
+                    {courseList.map((course) => (
+                      <MenuItem value={course.id} key={course.id}>
+                        {course.name} （已选 {course.student_count} / {course.capacity}）
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <Button variant="contained" onClick={() => handleCreate()}>
+                  提交
+                </Button>
+              </>
             ) : (
               ""
             )}
-            <Button variant="contained" onClick={() => handleCreate()}>
-              提交
-            </Button>
           </Stack>
         </Container>
       ) : (
